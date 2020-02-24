@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uzdevums2.WebApp", "Uzdevums2.WebApp\Uzdevums2.WebApp.csproj", "{6DBDD090-32E6-4451-9E17-A32BD0935088}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DBDD090-32E6-4451-9E17-A32BD0935088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBDD090-32E6-4451-9E17-A32BD0935088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBDD090-32E6-4451-9E17-A32BD0935088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBDD090-32E6-4451-9E17-A32BD0935088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8881FF5-FB6D-40F3-AF1C-6D4B2008068B}
+	EndGlobalSection
+EndGlobal
