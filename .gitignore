@@ -27,3 +27,7 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+/.vs
+/Uzdevums1/Uzdevums1/.vs/Uzdevums1/v16/Server/sqlite3
+/Uzdevums2/.vs/Uzdevums2/v16/Server/sqlite3
+/Uzdevums2/.vs/Uzdevums2/DesignTimeBuild
