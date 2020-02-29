@@ -5,6 +5,7 @@
         Continue = 0,
         Escape = 1,
         Next = 2,
-        ShowPoints = 3
+        ShowPoints = 3,
+        Restart = 4
     }
 }

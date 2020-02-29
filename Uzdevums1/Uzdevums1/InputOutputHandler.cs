@@ -21,6 +21,7 @@ namespace Uzdevums1
             Console.WriteLine("To enter new point, press N");
             Console.WriteLine("To view field, press S");
             Console.WriteLine("To exit, press Esc");
+            Console.WriteLine("To restart press R");
             ConsoleKeyInfo keyInfo = Console.ReadKey();
 
             switch (keyInfo.Key)
@@ -31,6 +32,8 @@ namespace Uzdevums1
                     return ActionEnum.Next;
                 case ConsoleKey.S:
                     return ActionEnum.ShowPoints;
+                case ConsoleKey.R:
+                    return ActionEnum.Restart;
                 default:
                     return ActionEnum.Continue;
             }

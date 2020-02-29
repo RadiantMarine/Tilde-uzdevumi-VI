@@ -20,5 +20,10 @@ namespace Uzdevums1
         {
             Field.Add(newPoint);
         }
+
+        public void CleanField()
+        {
+            Field = new List<Tuple<int, int>>();
+        }
     }
 }

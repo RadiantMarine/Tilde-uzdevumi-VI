@@ -27,6 +27,9 @@ namespace Uzdevums1
                     case ActionEnum.ShowPoints:
                         iOHandler.ShowPoints(field);
                         break;
+                    case ActionEnum.Restart:
+                        field.CleanField();
+                        break;
                     default:
                         break;
                 }
