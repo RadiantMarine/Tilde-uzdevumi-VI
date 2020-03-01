@@ -1,4 +1,4 @@
-﻿namespace Uzdevums1
+﻿namespace Uzdevums1.Enums
 {
     public enum DirectionEnum
     {
