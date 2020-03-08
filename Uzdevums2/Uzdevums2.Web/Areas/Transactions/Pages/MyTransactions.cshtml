@@ -1,0 +1,11 @@
+﻿@page
+@model Uzdevums2.Web.Areas.Transactions.Pages.MyTransactionsModel
+@{
+    ViewData["Title"] = "My transactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table>
+    @Html.DisplayFor(x => x.UserTransactions)
+</table>
