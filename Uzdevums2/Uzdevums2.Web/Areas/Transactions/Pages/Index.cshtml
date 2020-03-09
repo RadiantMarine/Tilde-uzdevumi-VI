@@ -1,0 +1,54 @@
+﻿@page
+@model Uzdevums2.Web.IndexModel
+
+@{
+    ViewData["Title"] = "My financial transactions";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Owed to me:@Html.DisplayFor(model => model.Owed)</p>
+<p>My debt: @Html.DisplayFor(model => model.Debt)</p>
+<p>Total: @Html.DisplayFor(model=>model.Total) </p>
+
+<p>
+    <a asp-page="./Create">Create a new transaction</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FinancialTransactions[0].ToUsername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinancialTransactions[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinancialTransactions[0].Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FinancialTransactions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToUsername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.FinancialTransactionId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.FinancialTransactionId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.FinancialTransactionId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+﻿@page
+@model Uzdevums2.Web.CreateModel
+
+@{
+    ViewData["Title"] = "Create a transaction";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FinancialTransaction.ToUsername" class="control-label"></label>
+                <input asp-for="FinancialTransaction.ToUsername" class="form-control" />
+                <span asp-validation-for="FinancialTransaction.ToUsername" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinancialTransaction.Amount" class="control-label"></label>
+                <input asp-for="FinancialTransaction.Amount" class="form-control" />
+                <span asp-validation-for="FinancialTransaction.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinancialTransaction.Description" class="control-label"></label>
+                <input asp-for="FinancialTransaction.Description" class="form-control" />
+                <span asp-validation-for="FinancialTransaction.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-page="./Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
