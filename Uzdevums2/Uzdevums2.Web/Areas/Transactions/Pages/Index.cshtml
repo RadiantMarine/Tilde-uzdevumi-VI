@@ -8,13 +8,20 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>Owed to me:@Html.DisplayFor(model => model.Owed)</p>
-<p>My debt: @Html.DisplayFor(model => model.Debt)</p>
-<p>Total: @Html.DisplayFor(model=>model.Total) </p>
-
-<p>
-    <a asp-page="./Create">Create a new transaction</a>
-</p>
+<div class="container">
+    <div class="col-md-4">
+        <p>Outgoing sum: @Html.DisplayFor(model => model.OutgoingSum)&euro;</p>
+    </div>
+    <div class="col-md-4">
+        <p>Incoming sum: @Html.DisplayFor(model => model.IncomingSum)&euro;</p>
+    </div>
+    <div class="col-md-4">
+        <p>Total balance: @Html.DisplayFor(model => model.TotalBalance)&euro;</p>
+    </div>
+</div>
+<div>
+    <a asp-area="Transactions" asp-page="/create">Create a new transaction</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -38,15 +45,14 @@
                     @Html.DisplayFor(modelItem => item.ToUsername)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
+                    @Html.DisplayFor(modelItem => item.Amount)&euro;
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.FinancialTransactionId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.FinancialTransactionId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.FinancialTransactionId">Delete</a>
+                    <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
+                    <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
                 </td>
             </tr>
         }

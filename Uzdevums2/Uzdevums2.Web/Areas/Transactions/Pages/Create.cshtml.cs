@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -10,19 +12,23 @@ namespace Uzdevums2.Web
 {
     public class CreateModel : PageModel
     {
-        private readonly ILogger<FinancialTransaction> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<FinancialTransaction> _logger;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public CreateModel(ApplicationDbContext context,
-            ILogger<FinancialTransaction> logger)
+            ILogger<FinancialTransaction> logger,
+            IHttpContextAccessor httpContextAccessor)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         public IActionResult OnGet()
         {
-            //TODO: FinancialTransaction.FromUsername =
+            FinancialTransaction = new FinancialTransaction();
+            FinancialTransaction.FromUsername = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
             return Page();
         }
 
