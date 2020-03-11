@@ -63,7 +63,7 @@ namespace Uzdevums2.Web
                     }
                     else
                     {
-                        Loan -= transaction.Amount;
+                        Debt -= transaction.Amount;
                     }
                 }
                 else
@@ -75,7 +75,7 @@ namespace Uzdevums2.Web
                     }
                     else
                     {
-                        Debt-= transaction.Amount;
+                        Loan -= transaction.Amount;
                     }
                 }
             }
