@@ -67,19 +67,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].ToUsername)
+                    @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].ToUsername)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Amount)
+                    @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].Amount)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Description)
+                    @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].Description)
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.OutgoingFinancialTransactions)
+            @foreach (var item in Model.IncomingFinancialTransactions)
             {
                 <tr>
                     <td>

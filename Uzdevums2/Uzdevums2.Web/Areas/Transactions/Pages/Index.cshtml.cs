@@ -52,7 +52,7 @@ namespace Uzdevums2.Web
 
             // Then we iterate through transactions to shuffle them into incoming/outgoing lists
             // And based on target of transaction
-            foreach (var transaction in OutgoingFinancialTransactions)
+            foreach (var transaction in AllFinancialTransactions)
             {
                 if (transaction.FromUsername == currentUserName)
                 {

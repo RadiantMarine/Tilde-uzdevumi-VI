@@ -16,7 +16,7 @@ namespace Uzdevums2.Web.Models
         public string ToUsername { get; set; }
 
         [Required]
-        [Range(0, 9999999999999999.99)]
+        [Range(0, 99999999999999.9999)]
         [Display(Name = "Amount €")]
         public decimal Amount { get; set; }
 
