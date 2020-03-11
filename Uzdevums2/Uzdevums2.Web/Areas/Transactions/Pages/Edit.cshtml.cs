@@ -46,18 +46,16 @@ namespace Uzdevums2.Web
                 return NotFound();
             }
 
+            // User should only be able to edit their own (aka outgoing) financial transactions
             CheckIsOutgoing();
+            if (!IsOutgoing)
+            {
+                return Forbid();
+            }
+
             return Page();
         }
 
-        private void CheckIsOutgoing()
-        {
-            var currentUserName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
-            IsOutgoing = FinancialTransaction.FromUsername == currentUserName;
-        }
-
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -85,6 +83,16 @@ namespace Uzdevums2.Web
             }
 
             return RedirectToPage("./Index");
+        }
+
+        /// <summary>
+        /// Check if Financial Transaction was outgoing for current user
+        /// Unless true, user should not be allowed to edit transaction
+        /// </summary>
+        private void CheckIsOutgoing()
+        {
+            var currentUserName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            IsOutgoing = FinancialTransaction.FromUsername == currentUserName;
         }
 
         private bool FinancialTransactionExists(int id)

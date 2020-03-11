@@ -49,6 +49,9 @@
     </dl>
 </div>
 <div>
-    <a asp-area="Transactions" asp-route-id="@Model.FinancialTransaction.FinancialTransactionId" asp-page="/Edit">Edit</a>
+    @if (Model.IsOutgoing)
+    {
+        <a asp-area="Transactions" asp-route-id="@Model.FinancialTransaction.FinancialTransactionId" asp-page="/Edit">Edit</a>
+    }
     <a asp-area="Transactions" asp-page="/index">Back to List</a>
 </div>

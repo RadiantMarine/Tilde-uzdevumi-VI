@@ -8,6 +8,7 @@ namespace Uzdevums2.Web.Models
         public int FinancialTransactionId { get; set; }
 
         [Required]
+        [Display(Name = "Transaction initiator")]
         public string FromUsername { get; set; }
 
         [Required]

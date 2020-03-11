@@ -27,19 +27,23 @@ namespace Uzdevums2.Web
 
         public IActionResult OnGet()
         {
+            // Create a new instance of Financial transaction and set its FromUsername value from context.
             FinancialTransaction = new FinancialTransaction();
             FinancialTransaction.FromUsername = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            if (FinancialTransaction.FromUsername == null)
+            {
+                return Forbid();
+            }
             return Page();
         }
 
         [BindProperty]
         public FinancialTransaction FinancialTransaction { get; set; }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            // User should not be able to send financial transactions as a person other than themselves.
+            if (!ModelState.IsValid || FinancialTransaction.FromUsername == _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name))
             {
                 return Page();
             }

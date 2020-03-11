@@ -45,6 +45,10 @@ namespace Uzdevums2.Web
             return Page();
         }
 
+        /// <summary>
+        /// Check if Financial Transaction was outgoing for current user
+        /// based on this, details page will show different fields
+        /// </summary>
         private void CheckIsOutgoing()
         {
             var currentUserName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
