@@ -46,7 +46,7 @@ CREATE TABLE [AspNetRoleClaims] (
     [ClaimType] nvarchar(max) NULL,
     [ClaimValue] nvarchar(max) NULL,
     CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) R                                                                                                                                                                                               EFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
 );
 
 GO
@@ -57,7 +57,7 @@ CREATE TABLE [AspNetUserClaims] (
     [ClaimType] nvarchar(max) NULL,
     [ClaimValue] nvarchar(max) NULL,
     CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
-    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) R                                                                                                                                                                                               EFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
 );
 
 GO
@@ -67,8 +67,8 @@ CREATE TABLE [AspNetUserLogins] (
     [ProviderKey] nvarchar(128) NOT NULL,
     [ProviderDisplayName] nvarchar(max) NULL,
     [UserId] nvarchar(450) NOT NULL,
-    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]                                                                                                                                                                                               ),
-    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) R                                                                                                                                                                                               EFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
 );
 
 GO
@@ -77,8 +77,8 @@ CREATE TABLE [AspNetUserRoles] (
     [UserId] nvarchar(450) NOT NULL,
     [RoleId] nvarchar(450) NOT NULL,
     CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
-    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) RE                                                                                                                                                                                               FERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
-    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) RE                                                                                                                                                                                               FERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
 );
 
 GO
@@ -88,8 +88,8 @@ CREATE TABLE [AspNetUserTokens] (
     [LoginProvider] nvarchar(128) NOT NULL,
     [Name] nvarchar(128) NOT NULL,
     [Value] nvarchar(max) NULL,
-    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Na                                                                                                                                                                                               me]),
-    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) R                                                                                                                                                                                               EFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
 );
 
 GO
@@ -102,8 +102,8 @@ CREATE TABLE [FinancialTransaction] (
     [IsLoan] bit NOT NULL,
     [Description] nvarchar(500) NULL,
     CONSTRAINT [PK_FinancialTransaction] PRIMARY KEY ([FinancialTransactionId]),
-    CONSTRAINT [FK_FinancialTransaction_AspNetUsers_UserName] FOREIGN KEY ([ToUs                                                                                                                                                                                               ername]) REFERENCES [AspNetUsers] ([Email]) ON DELETE CASCADE,
-    CONSTRAINT [FK_Transactions_AspNetUsers_Username] FOREIGN KEY ([FromUsername                                                                                                                                                                                               ]) REFERENCES [AspNetUsers] ([Email]) ON DELETE CASCADE
+    CONSTRAINT [FK_FinancialTransaction_AspNetUsers_UserName] FOREIGN KEY ([ToUsername]) REFERENCES [AspNetUsers] ([Email]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Transactions_AspNetUsers_Username] FOREIGN KEY ([FromUsername]) REFERENCES [AspNetUsers] ([Email]) ON DELETE CASCADE
 );
 
 GO
@@ -112,7 +112,7 @@ CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);
 
 GO
 
-CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [N                                                                                                                                                                                               ormalizedName] IS NOT NULL;
+CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;
 
 GO
 
@@ -132,7 +132,7 @@ CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);
 
 GO
 
-CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHER                                                                                                                                                                                               E [NormalizedUserName] IS NOT NULL;
+CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;
 
 GO
 
