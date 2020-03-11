@@ -25,14 +25,14 @@ namespace Uzdevums2.Web
             OutgoingFinancialTransactions = new List<FinancialTransaction>();
             IncomingFinancialTransactions = new List<FinancialTransaction>();
 
-            OutgoingSum = 0.0M;
-            IncomingSum = 0.0M;
+            Loan = 0.0M;
+            Debt = 0.0M;
             TotalBalance = 0.0M;
         }
 
-        public decimal OutgoingSum { get; set; }
+        public decimal Loan { get; set; }
 
-        public decimal IncomingSum { get; set; }
+        public decimal Debt { get; set; }
 
         public decimal TotalBalance { get; set; }
 
@@ -57,16 +57,30 @@ namespace Uzdevums2.Web
                 if (transaction.FromUsername == currentUserName)
                 {
                     OutgoingFinancialTransactions.Add(transaction);
-                    OutgoingSum += transaction.Amount;
+                    if (transaction.IsLoan)
+                    {
+                        Loan += transaction.Amount;
+                    }
+                    else
+                    {
+                        Loan -= transaction.Amount;
+                    }
                 }
                 else
                 {
                     IncomingFinancialTransactions.Add(transaction);
-                    IncomingSum += transaction.Amount;
+                    if (transaction.IsLoan)
+                    {
+                        Debt += transaction.Amount;
+                    }
+                    else
+                    {
+                        Debt-= transaction.Amount;
+                    }
                 }
             }
 
-            TotalBalance = OutgoingSum - IncomingSum;
+            TotalBalance = Loan - Debt;
         }
     }
 }

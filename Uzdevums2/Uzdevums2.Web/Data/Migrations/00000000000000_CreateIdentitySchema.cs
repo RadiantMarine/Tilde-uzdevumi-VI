@@ -29,8 +29,6 @@ namespace Uzdevums2.Web.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: false),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Name = table.Column<string>(maxLength: 256, nullable: false),
-                    Surname = table.Column<string>(maxLength: 100, nullable: false),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
@@ -164,6 +162,7 @@ namespace Uzdevums2.Web.Data.Migrations
                     ToUsername = table.Column<string>(maxLength:256, nullable: false),
                     FromUsername = table.Column<string>(maxLength: 256, nullable: false),
                     Amount = table.Column<decimal>(nullable:false),
+                    IsLoan = table.Column<bool>(nullable: false),
                     Description = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
@@ -173,13 +172,13 @@ namespace Uzdevums2.Web.Data.Migrations
                         name: "FK_FinancialTransaction_AspNetUsers_UserName",
                         column: x => x.ToUsername,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Username",
+                        principalColumn: "Email",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Transactions_AspNetUsers_Username",
                         column: x => x.FromUsername,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Username",
+                        principalColumn: "Email",
                         onDelete: ReferentialAction.Cascade);
                 });
 

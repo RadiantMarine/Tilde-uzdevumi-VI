@@ -20,6 +20,10 @@ namespace Uzdevums2.Web.Models
         [Display(Name = "Amount €")]
         public decimal Amount { get; set; }
 
+        [Required]
+        [Display(Name = "Is this a loan?")]
+        public bool IsLoan { get; set; }
+
         [StringLength(500, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 0)]
         [Display(Name = "Description")]
         public string Description { get; set; }

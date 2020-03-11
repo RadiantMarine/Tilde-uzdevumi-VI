@@ -39,25 +39,6 @@ namespace Uzdevums2.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(256, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
-
-            // Name and surname can have minimum length of 1 because there are single-letter names and we don't discriminate.
-            // Max length for name is set to 250 and we hope that it should be enough for most users given the ability to omit names
-            [Required]
-            [StringLength(256, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-            [Display(Name = "Name")]
-            public string Name { get; set; }
-
-            // Based on https://www.quora.com/What-is-the-longest-surname-in-the-world-s-recorded-history/answer/David-Jntlm we do hope
-            // That 100 letters for Surname should be enough for everyone
-            [Required]
-            [StringLength(250, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
-            [Display(Name = "Surname")]
-            public string Surname { get; set; }
-
-            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]

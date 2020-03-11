@@ -10,10 +10,10 @@
 
 <div class="container">
     <div class="col-md-4">
-        <p>Outgoing sum: @Html.DisplayFor(model => model.OutgoingSum)&euro;</p>
+        <p>Currently loaned: @Html.DisplayFor(model => model.Loan)&euro;</p>
     </div>
     <div class="col-md-4">
-        <p>Incoming sum: @Html.DisplayFor(model => model.IncomingSum)&euro;</p>
+        <p>Current debt: @Html.DisplayFor(model => model.Debt)&euro;</p>
     </div>
     <div class="col-md-4">
         <p>Total balance: @Html.DisplayFor(model => model.TotalBalance)&euro;</p>
@@ -34,6 +34,9 @@
                     @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Amount)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].IsLoan)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Description)
                 </th>
                 <th></th>
@@ -49,12 +52,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Amount)&euro;
                     </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.IsLoan)
+                    </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
                         <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
-                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
+                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a>
                     </td>
                 </tr>
             }
@@ -73,6 +79,9 @@
                     @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].Amount)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].IsLoan)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.IncomingFinancialTransactions[0].Description)
                 </th>
                 <th></th>
@@ -83,17 +92,20 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ToUsername)
+                        @Html.DisplayFor(modelItem => item.FromUsername)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Amount)&euro;
                     </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.IsLoan)
+                    </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
                         <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
-                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
+                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a>
                     </td>
                 </tr>
             }

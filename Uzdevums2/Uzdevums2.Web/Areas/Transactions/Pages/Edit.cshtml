@@ -34,16 +34,14 @@
                 </div>
 
             }
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FinancialTransaction.ToUsername)
-                <input asp-for="FinancialTransaction.ToUsername" class="form-control" />
-                <span asp-validation-for="FinancialTransaction.ToUsername" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.FinancialTransaction.Amount)
                 <input asp-for="FinancialTransaction.Amount" class="form-control" />
                 <span asp-validation-for="FinancialTransaction.Amount" class="text-danger"></span>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.FinancialTransaction.IsLoan)            
+                @Html.DisplayFor(model => model.FinancialTransaction.IsLoan)
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.FinancialTransaction.Description)

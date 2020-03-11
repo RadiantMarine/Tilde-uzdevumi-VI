@@ -24,6 +24,10 @@
                 <span asp-validation-for="FinancialTransaction.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
+                @Html.LabelFor(model => model.FinancialTransaction.IsLoan)
+                <input asp-for="FinancialTransaction.IsLoan" class="form-control" />
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.FinancialTransaction.Description)
                 <input asp-for="FinancialTransaction.Description" class="form-control" />
                 <span asp-validation-for="FinancialTransaction.Description" class="text-danger"></span>
