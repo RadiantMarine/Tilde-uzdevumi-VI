@@ -22,39 +22,81 @@
 <div>
     <a asp-area="Transactions" asp-page="/create">Create a new transaction</a>
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FinancialTransactions[0].ToUsername)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FinancialTransactions[0].Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FinancialTransactions[0].Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.FinancialTransactions)
-        {
+<div>
+    <h2>Outgoing transactions</h2>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ToUsername)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)&euro;
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
-                    <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].ToUsername)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Description)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OutgoingFinancialTransactions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ToUsername)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)&euro;
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
+                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <h2>Incoming transactions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].ToUsername)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OutgoingFinancialTransactions[0].Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OutgoingFinancialTransactions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ToUsername)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)&euro;
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a asp-page="/Edit" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Edit</a> |
+                        <a asp-page="/Details" asp-area="Transactions" asp-route-id="@item.FinancialTransactionId">Details</a> |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

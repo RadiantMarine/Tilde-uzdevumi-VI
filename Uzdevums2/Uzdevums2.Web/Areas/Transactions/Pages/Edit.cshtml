@@ -13,6 +13,28 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.FinancialTransaction.FinancialTransactionId)
+
+            @if (Model.IsOutgoing)
+            {
+                @Html.HiddenFor(model => model.FinancialTransaction.FromUsername)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinancialTransaction.ToUsername)
+                    <input asp-for="FinancialTransaction.ToUsername" class="form-control" />
+                    <span asp-validation-for="FinancialTransaction.ToUsername" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                @Html.HiddenFor(model => model.FinancialTransaction.ToUsername)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinancialTransaction.FromUsername)
+                    <input asp-for="FinancialTransaction.FromUsername" class="form-control" />
+                    <span asp-validation-for="FinancialTransaction.FromUsername" class="text-danger"></span>
+                </div>
+
+            }
+
             <div class="form-group">
                 @Html.LabelFor(model => model.FinancialTransaction.ToUsername)
                 <input asp-for="FinancialTransaction.ToUsername" class="form-control" />

@@ -21,6 +21,10 @@ namespace Uzdevums2.Web
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+
+            OutgoingFinancialTransactions = new List<FinancialTransaction>();
+            IncomingFinancialTransactions = new List<FinancialTransaction>();
+
             OutgoingSum = 0.0M;
             IncomingSum = 0.0M;
             TotalBalance = 0.0M;
@@ -32,27 +36,32 @@ namespace Uzdevums2.Web
 
         public decimal TotalBalance { get; set; }
 
-        public IList<FinancialTransaction> FinancialTransactions { get; set; }
+        public IList<FinancialTransaction> OutgoingFinancialTransactions { get; set; }
+
+        public IList<FinancialTransaction> IncomingFinancialTransactions { get; set; }
 
         public async Task OnGetAsync()
         {
             // here we get the current user to only get FinancialTransactions that are related to current user
             var currentUserName = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
-            FinancialTransactions = await _context.FinancialTransactions
+            var AllFinancialTransactions = await _context.FinancialTransactions
                 .AsQueryable()
                 .Where(ft => ft.FromUsername == currentUserName || ft.ToUsername == currentUserName)
                 .ToListAsync();
 
-            // Then we iterate through transactions to update owed or debt values based on target of transaction
-            foreach (var transaction in FinancialTransactions)
+            // Then we iterate through transactions to shuffle them into incoming/outgoing lists
+            // And based on target of transaction
+            foreach (var transaction in OutgoingFinancialTransactions)
             {
                 if (transaction.FromUsername == currentUserName)
                 {
+                    OutgoingFinancialTransactions.Add(transaction);
                     OutgoingSum += transaction.Amount;
                 }
                 else
                 {
+                    IncomingFinancialTransactions.Add(transaction);
                     IncomingSum += transaction.Amount;
                 }
             }
